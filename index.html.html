@@ -1,0 +1,416 @@
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
+:root{--dk:#131921;--mid:#232f3e;--org:#ff9900;--orgh:#e88900;--bl:#007185;--grn:#067d62;--red:#b12704;--txt:#0f1111;--muted:#565959;--bdr:#d5d9d9;--bg:#f0f2f2;--wh:#fff}
+body{background:var(--bg);color:var(--txt)}
+nav.top{background:var(--dk);padding:10px 20px;display:flex;align-items:center;gap:12px;position:sticky;top:0;z-index:200}
+.logo{color:#fff;font-size:20px;font-weight:700;padding:4px 8px;cursor:pointer;border:1px solid transparent;white-space:nowrap}
+.logo:hover{border-color:#fff}
+.logo span{color:var(--org)}
+.sb{flex:1;display:flex;height:40px}
+.sb input{flex:1;padding:0 12px;font-size:14px;border:none;outline:none}
+.sb button{background:var(--org);border:none;padding:0 14px;cursor:pointer;border-radius:0 4px 4px 0}
+.sb button svg{width:18px;height:18px}
+.nls{display:flex;gap:2px}
+.nl{color:#fff;font-size:13px;padding:6px 12px;border:1px solid transparent;cursor:pointer;background:none;border-radius:2px;white-space:nowrap}
+.nl:hover{border-color:#fff}
+.nl.act{border-color:var(--org);color:var(--org)}
+nav.sub{background:var(--mid);padding:6px 20px;display:flex;gap:2px;flex-wrap:wrap}
+.sl{color:#fff;font-size:13px;padding:6px 12px;cursor:pointer;border:1px solid transparent;border-radius:2px;white-space:nowrap;background:none}
+.sl:hover{border-color:#fff;background:rgba(255,255,255,.1)}
+.pg{display:none}
+.pg.act{display:block}
+.hero{background:var(--mid);color:#fff;text-align:center;padding:60px 20px}
+.hero h1{font-size:38px;font-weight:700;margin-bottom:10px}
+.hero h1 span{color:var(--org)}
+.hero p{font-size:16px;color:#ccc;margin-bottom:28px}
+.hbtn{background:var(--org);color:var(--dk);padding:13px 36px;font-size:16px;font-weight:700;border:none;cursor:pointer;border-radius:4px}
+.hbtn:hover{background:var(--orgh)}
+.sec{padding:24px 20px;max-width:1200px;margin:0 auto}
+.stitle{font-size:22px;font-weight:700;margin-bottom:18px;border-bottom:3px solid var(--org);padding-bottom:8px;display:inline-block}
+.stats{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:12px;background:var(--bg);padding:20px;margin-bottom:4px}
+.stat{background:var(--wh);border:1px solid var(--bdr);border-radius:4px;padding:16px;text-align:center}
+.stat .n{font-size:28px;font-weight:700;color:var(--org)}
+.stat .l{font-size:12px;color:var(--muted);margin-top:4px}
+.cgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:14px;margin-bottom:28px}
+.ccard{background:var(--wh);border:1px solid var(--bdr);border-radius:4px;padding:16px;cursor:pointer;transition:box-shadow .15s,transform .15s}
+.ccard:hover{box-shadow:0 3px 14px rgba(0,0,0,.18);transform:translateY(-2px);border-color:#aaa}
+.badge{font-size:11px;font-weight:700;padding:2px 8px;border-radius:2px;display:inline-block;margin-bottom:8px;color:#fff}
+.b-org{background:var(--org);color:var(--dk)}
+.b-grn{background:var(--grn)}
+.b-bl{background:var(--bl)}
+.b-red{background:var(--red)}
+.ccard h3{font-size:14px;font-weight:700;margin-bottom:4px}
+.ccard .sub{font-size:12px;color:var(--muted);margin-bottom:8px}
+.rat{font-size:12px;color:#c45500;margin-bottom:6px}
+.dur{font-size:11px;color:var(--muted);margin-bottom:8px}
+.price{font-size:18px;font-weight:700;color:var(--red)}
+.price s{font-size:12px;color:var(--muted);font-weight:400;margin-left:4px}
+.ebtn{background:var(--org);border:none;padding:7px 0;font-size:13px;font-weight:700;cursor:pointer;border-radius:3px;width:100%;margin-top:8px}
+.ebtn:hover{background:var(--orgh)}
+.banner{background:var(--wh);border:1px solid var(--bdr);border-radius:4px;padding:22px;margin-bottom:20px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.banner h2{font-size:20px;font-weight:700}
+.banner p{font-size:13px;color:var(--muted);margin-top:6px}
+
+/* Course Detail Page */
+.cd-hero{background:var(--mid);color:#fff;padding:32px 20px}
+.cd-hero h1{font-size:28px;font-weight:700;margin-bottom:8px}
+.cd-hero p{font-size:15px;color:#ccc;margin-bottom:16px}
+.cd-meta{display:flex;gap:16px;flex-wrap:wrap;font-size:13px}
+.cd-meta span{color:#ccc}
+.cd-meta strong{color:var(--org)}
+.cd-body{display:grid;grid-template-columns:1fr 320px;gap:20px;padding:24px 20px;max-width:1200px;margin:0 auto}
+.cd-left{}
+.cd-box{background:var(--wh);border:1px solid var(--bdr);border-radius:4px;padding:20px;margin-bottom:16px}
+.cd-box h2{font-size:17px;font-weight:700;margin-bottom:14px;padding-bottom:8px;border-bottom:2px solid var(--org)}
+.cd-box ul{list-style:none;padding:0}
+.cd-box ul li{padding:6px 0;font-size:14px;border-bottom:1px solid #f0f0f0;display:flex;align-items:flex-start;gap:8px}
+.cd-box ul li:last-child{border:none}
+.cd-box ul li::before{content:"✓";color:var(--grn);font-weight:700;flex-shrink:0}
+.salary-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:8px}
+.sal-card{background:#f8f9fa;border:1px solid var(--bdr);border-radius:4px;padding:14px;text-align:center}
+.sal-card .role{font-size:12px;color:var(--muted);margin-bottom:4px}
+.sal-card .amt{font-size:20px;font-weight:700;color:var(--grn)}
+.sal-card .exp{font-size:11px;color:var(--muted);margin-top:2px}
+.jobs-list{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.job-tag{background:#e8f4f8;color:var(--bl);font-size:12px;padding:4px 12px;border-radius:12px;border:1px solid #b8d8e8}
+.cd-right{}
+.enroll-box{background:var(--wh);border:1px solid var(--bdr);border-radius:4px;padding:20px;position:sticky;top:80px}
+.enroll-box .big-price{font-size:28px;font-weight:700;color:var(--red)}
+.enroll-box .big-price s{font-size:16px;color:var(--muted);font-weight:400}
+.enroll-box .disc{font-size:13px;color:var(--grn);font-weight:700;margin-bottom:14px}
+.full-ebtn{background:var(--org);border:none;padding:12px;font-size:16px;font-weight:700;cursor:pointer;border-radius:3px;width:100%;margin-bottom:10px}
+.full-ebtn:hover{background:var(--orgh)}
+.enroll-box ul{list-style:none;margin-top:14px}
+.enroll-box ul li{font-size:13px;padding:5px 0;border-bottom:1px solid #f5f5f5;display:flex;align-items:center;gap:8px}
+.enroll-box ul li::before{content:"✓";color:var(--grn);font-weight:700}
+.back-btn{background:none;border:1px solid var(--bdr);padding:8px 16px;cursor:pointer;border-radius:3px;font-size:13px;margin-bottom:16px;display:flex;align-items:center;gap:6px}
+.back-btn:hover{background:var(--bg)}
+
+/* Forms */
+.reg-form{background:var(--wh);border:1px solid var(--bdr);border-radius:4px;padding:28px;max-width:520px;margin:0 auto}
+.reg-form h2{font-size:22px;font-weight:700;margin-bottom:22px;text-align:center}
+.fg{margin-bottom:16px}
+.fg label{display:block;font-size:13px;font-weight:700;margin-bottom:5px}
+.fg input,.fg select{width:100%;padding:9px 11px;border:1px solid #a6a6a6;border-radius:3px;font-size:14px;outline:none}
+.fg input:focus,.fg select:focus{border-color:var(--org);box-shadow:0 0 0 2px #f6dba3}
+.sbtn{width:100%;background:var(--org);border:none;padding:11px;font-size:15px;font-weight:700;cursor:pointer;border-radius:3px;margin-top:8px}
+.sbtn:hover{background:var(--orgh)}
+
+/* Contact */
+.cgrd2{display:grid;grid-template-columns:1fr 1fr;gap:16px;max-width:900px;margin:0 auto 24px}
+.cbox{background:var(--wh);border:1px solid var(--bdr);border-radius:4px;padding:20px}
+.cbox h3{font-size:16px;font-weight:700;margin-bottom:12px;color:var(--bl)}
+.cbox p{font-size:14px;color:var(--muted);margin-bottom:5px}
+
+/* Admin */
+.astats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:22px}
+.as{background:var(--wh);border:1px solid var(--bdr);border-radius:4px;padding:16px;border-left:4px solid var(--org)}
+.as .n{font-size:26px;font-weight:700}
+.as .l{font-size:12px;color:var(--muted)}
+.atbl{width:100%;border-collapse:collapse;background:var(--wh);border:1px solid var(--bdr);font-size:13px}
+.atbl th{background:var(--mid);color:#fff;padding:10px 14px;text-align:left}
+.atbl td{padding:10px 14px;border-bottom:1px solid var(--bdr)}
+.atbl tr:hover td{background:#f7f8f8}
+.bs{padding:3px 10px;border-radius:12px;font-size:11px;font-weight:700}
+.bs.a{background:#d4edda;color:#155724}
+.bs.p{background:#fff3cd;color:#856404}
+.bs.i{background:#f8d7da;color:#721c24}
+
+footer{background:var(--dk);color:#ccc;padding:28px 20px;margin-top:32px;text-align:center}
+.flinks{display:flex;justify-content:center;gap:20px;margin-bottom:14px;flex-wrap:wrap}
+.flinks a{color:#ccc;font-size:13px;text-decoration:none;cursor:pointer}
+.flinks a:hover{color:#fff}
+footer p{font-size:12px;color:#888}
+@media(max-width:700px){.cd-body{grid-template-columns:1fr}.cd-right{order:-1}.cgrd2{grid-template-columns:1fr}.astats{grid-template-columns:1fr 1fr}}
+</style>
+
+<nav class="top">
+  <div class="logo" onclick="showPage('home')">HV <span>Technolyies</span></div>
+  <div class="sb"><input type="text" placeholder="Search courses, skills, topics..."/><button><svg viewBox="0 0 24 24" fill="none" stroke="#131921" stroke-width="2.5" stroke-linecap="round"><circle cx="11" cy="11" r="6"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></button></div>
+  <div class="nls">
+    <button class="nl act" id="nl-home" onclick="showPage('home')">Home</button>
+    <button class="nl" id="nl-courses" onclick="showPage('courses')">Courses</button>
+    <button class="nl" id="nl-register" onclick="showPage('register')">Register</button>
+    <button class="nl" id="nl-contact" onclick="showPage('contact')">Contact</button>
+    <button class="nl" id="nl-admin" onclick="showPage('admin')">Admin</button>
+  </div>
+</nav>
+<nav class="sub">
+  <button class="sl" onclick="showCourse('webdev')">Web Development</button>
+  <button class="sl" onclick="showCourse('data')">Data Analytics</button>
+  <button class="sl" onclick="showCourse('dm')">Digital Marketing</button>
+  <button class="sl" onclick="showCourse('aiml')">AI & Machine Learning</button>
+  <button class="sl" onclick="showCourse('excel')">Excel & Power BI</button>
+  <button class="sl" onclick="showCourse('python')">Python</button>
+  <button class="sl" onclick="showCourse('uiux')">UI/UX Design</button>
+  <button class="sl" onclick="showCourse('cyber')">Cyber Security</button>
+  <button class="sl" onclick="showCourse('cloud')">Cloud Computing</button>
+</nav>
+
+<!-- HOME PAGE -->
+<div id="pg-home" class="pg act">
+  <div class="hero">
+    <h1>HV <span>Technolyies</span> 🚀</h1>
+    <p>Empowering Students with Future Skills</p>
+    <button class="hbtn" onclick="showPage('courses')">Explore Courses</button>
+  </div>
+  <div class="stats" style="max-width:1200px;margin:0 auto">
+    <div class="stat"><div class="n">500+</div><div class="l">Students Enrolled</div></div>
+    <div class="stat"><div class="n">15+</div><div class="l">Courses Available</div></div>
+    <div class="stat"><div class="n">8+</div><div class="l">Expert Trainers</div></div>
+    <div class="stat"><div class="n">95%</div><div class="l">Placement Rate</div></div>
+    <div class="stat"><div class="n">4.8★</div><div class="l">Avg Rating</div></div>
+    <div class="stat"><div class="n">50+</div><div class="l">Hiring Partners</div></div>
+  </div>
+  <div class="sec">
+    <span class="stitle">Featured Courses</span>
+    <div class="cgrid">
+      <div class="ccard" onclick="showCourse('webdev')"><span class="badge b-org">Bestseller</span><h3>Web Development</h3><div class="sub">HTML, CSS, JavaScript, React</div><div class="rat">★★★★★ (248)</div><div class="dur">⏱ 3 Months</div><div class="price">₹4,999 <s>₹12,000</s></div><button class="ebtn">Enroll Now</button></div>
+      <div class="ccard" onclick="showCourse('data')"><span class="badge b-grn">New</span><h3>Data Analytics</h3><div class="sub">Excel, Python, Power BI</div><div class="rat">★★★★☆ (183)</div><div class="dur">⏱ 2 Months</div><div class="price">₹5,499 <s>₹14,000</s></div><button class="ebtn">Enroll Now</button></div>
+      <div class="ccard" onclick="showCourse('dm')"><span class="badge b-bl">Trending</span><h3>Digital Marketing</h3><div class="sub">SEO, Google Ads, Social Media</div><div class="rat">★★★★★ (312)</div><div class="dur">⏱ 2 Months</div><div class="price">₹3,999 <s>₹10,000</s></div><button class="ebtn">Enroll Now</button></div>
+      <div class="ccard" onclick="showCourse('aiml')"><span class="badge b-red">Hot</span><h3>AI & Machine Learning</h3><div class="sub">Python, TensorFlow, Projects</div><div class="rat">★★★★☆ (97)</div><div class="dur">⏱ 3 Months</div><div class="price">₹6,999 <s>₹18,000</s></div><button class="ebtn">Enroll Now</button></div>
+      <div class="ccard" onclick="showCourse('excel')"><span class="badge b-grn">Popular</span><h3>Excel & Power BI</h3><div class="sub">Advanced Excel, Dashboards</div><div class="rat">★★★★★ (201)</div><div class="dur">⏱ 1 Month</div><div class="price">₹2,499 <s>₹6,000</s></div><button class="ebtn">Enroll Now</button></div>
+      <div class="ccard" onclick="showCourse('python')"><span class="badge b-bl">New</span><h3>Python Programming</h3><div class="sub">Basics to Advanced, OOP</div><div class="rat">★★★★☆ (145)</div><div class="dur">⏱ 6 Weeks</div><div class="price">₹2,999 <s>₹7,500</s></div><button class="ebtn">Enroll Now</button></div>
+      <div class="ccard" onclick="showCourse('uiux')"><span class="badge b-org">Trending</span><h3>UI/UX Design</h3><div class="sub">Figma, Prototyping, Research</div><div class="rat">★★★★★ (167)</div><div class="dur">⏱ 2 Months</div><div class="price">₹4,499 <s>₹11,000</s></div><button class="ebtn">Enroll Now</button></div>
+      <div class="ccard" onclick="showCourse('cyber')"><span class="badge b-red">Hot</span><h3>Cyber Security</h3><div class="sub">Ethical Hacking, Network Security</div><div class="rat">★★★★☆ (89)</div><div class="dur">⏱ 3 Months</div><div class="price">₹7,499 <s>₹20,000</s></div><button class="ebtn">Enroll Now</button></div>
+      <div class="ccard" onclick="showCourse('cloud')"><span class="badge b-bl">New</span><h3>Cloud Computing</h3><div class="sub">AWS, Azure, Google Cloud</div><div class="rat">★★★★☆ (112)</div><div class="dur">⏱ 2 Months</div><div class="price">₹5,999 <s>₹15,000</s></div><button class="ebtn">Enroll Now</button></div>
+    </div>
+    <div class="banner">
+      <div><h2>Why Choose V SUCCEED?</h2><p>Industry trainers • Live projects • Placement support • Certificate on completion • Lifetime access</p></div>
+      <button class="hbtn" onclick="showPage('register')">Join Now</button>
+    </div>
+  </div>
+  <footer><div class="flinks"><a onclick="showPage('home')">Home</a><a onclick="showPage('courses')">Courses</a><a onclick="showPage('register')">Register</a><a onclick="showPage('contact')">Contact</a></div><p>© 2025 V SUCCEED. All rights reserved.</p></footer>
+</div>
+
+<!-- COURSES PAGE -->
+<div id="pg-courses" class="pg">
+  <div class="sec">
+    <span class="stitle">All Courses</span>
+    <div class="cgrid">
+      <div class="ccard" onclick="showCourse('webdev')"><span class="badge b-org">Bestseller</span><h3>Web Development</h3><div class="sub">HTML, CSS, JS, React, Node.js</div><div class="rat">★★★★★ (248)</div><div class="dur">⏱ 3 Months</div><div class="price">₹4,999 <s>₹12,000</s></div><button class="ebtn">View Details</button></div>
+      <div class="ccard" onclick="showCourse('data')"><span class="badge b-grn">New</span><h3>Data Analytics</h3><div class="sub">Excel, Python, SQL, Power BI</div><div class="rat">★★★★☆ (183)</div><div class="dur">⏱ 2 Months</div><div class="price">₹5,499 <s>₹14,000</s></div><button class="ebtn">View Details</button></div>
+      <div class="ccard" onclick="showCourse('dm')"><span class="badge b-bl">Trending</span><h3>Digital Marketing</h3><div class="sub">SEO, Google Ads, Social Media</div><div class="rat">★★★★★ (312)</div><div class="dur">⏱ 2 Months</div><div class="price">₹3,999 <s>₹10,000</s></div><button class="ebtn">View Details</button></div>
+      <div class="ccard" onclick="showCourse('aiml')"><span class="badge b-red">Hot</span><h3>AI & Machine Learning</h3><div class="sub">Python, TensorFlow, Projects</div><div class="rat">★★★★☆ (97)</div><div class="dur">⏱ 3 Months</div><div class="price">₹6,999 <s>₹18,000</s></div><button class="ebtn">View Details</button></div>
+      <div class="ccard" onclick="showCourse('excel')"><span class="badge b-grn">Popular</span><h3>Excel & Power BI</h3><div class="sub">Advanced Excel, Power Query</div><div class="rat">★★★★★ (201)</div><div class="dur">⏱ 1 Month</div><div class="price">₹2,499 <s>₹6,000</s></div><button class="ebtn">View Details</button></div>
+      <div class="ccard" onclick="showCourse('python')"><span class="badge b-bl">New</span><h3>Python Programming</h3><div class="sub">Basics to Advanced, OOP</div><div class="rat">★★★★☆ (145)</div><div class="dur">⏱ 6 Weeks</div><div class="price">₹2,999 <s>₹7,500</s></div><button class="ebtn">View Details</button></div>
+      <div class="ccard" onclick="showCourse('uiux')"><span class="badge b-org">Trending</span><h3>UI/UX Design</h3><div class="sub">Figma, Wireframing, Research</div><div class="rat">★★★★★ (167)</div><div class="dur">⏱ 2 Months</div><div class="price">₹4,499 <s>₹11,000</s></div><button class="ebtn">View Details</button></div>
+      <div class="ccard" onclick="showCourse('cyber')"><span class="badge b-red">Hot</span><h3>Cyber Security</h3><div class="sub">Ethical Hacking, Network Sec</div><div class="rat">★★★★☆ (89)</div><div class="dur">⏱ 3 Months</div><div class="price">₹7,499 <s>₹20,000</s></div><button class="ebtn">View Details</button></div>
+      <div class="ccard" onclick="showCourse('cloud')"><span class="badge b-bl">New</span><h3>Cloud Computing</h3><div class="sub">AWS, Azure, Google Cloud</div><div class="rat">★★★★☆ (112)</div><div class="dur">⏱ 2 Months</div><div class="price">₹5,999 <s>₹15,000</s></div><button class="ebtn">View Details</button></div>
+      <div class="ccard" onclick="showCourse('sql')"><span class="badge b-grn">Popular</span><h3>SQL & Database</h3><div class="sub">MySQL, PostgreSQL, MongoDB</div><div class="rat">★★★★☆ (134)</div><div class="dur">⏱ 6 Weeks</div><div class="price">₹2,499 <s>₹6,500</s></div><button class="ebtn">View Details</button></div>
+      <div class="ccard" onclick="showCourse('java')"><span class="badge b-org">Bestseller</span><h3>Java Full Stack</h3><div class="sub">Core Java, Spring Boot, REST API</div><div class="rat">★★★★★ (198)</div><div class="dur">⏱ 4 Months</div><div class="price">₹6,499 <s>₹16,000</s></div><button class="ebtn">View Details</button></div>
+      <div class="ccard" onclick="showCourse('tally')"><span class="badge b-grn">New</span><h3>Tally & Accounting</h3><div class="sub">Tally Prime, GST, Payroll</div><div class="rat">★★★★☆ (156)</div><div class="dur">⏱ 6 Weeks</div><div class="price">₹1,999 <s>₹5,000</s></div><button class="ebtn">View Details</button></div>
+    </div>
+  </div>
+  <footer><div class="flinks"><a onclick="showPage('home')">Home</a><a onclick="showPage('courses')">Courses</a><a onclick="showPage('register')">Register</a><a onclick="showPage('contact')">Contact</a></div><p>© 2025 V SUCCEED. All rights reserved.</p></footer>
+</div>
+
+<!-- COURSE DETAIL PAGE -->
+<div id="pg-coursedetail" class="pg">
+  <div id="cd-hero" class="cd-hero"></div>
+  <div class="cd-body">
+    <div class="cd-left" id="cd-left"></div>
+    <div class="cd-right" id="cd-right"></div>
+  </div>
+  <footer><div class="flinks"><a onclick="showPage('home')">Home</a><a onclick="showPage('courses')">Courses</a><a onclick="showPage('register')">Register</a><a onclick="showPage('contact')">Contact</a></div><p>© 2025 V SUCCEED. All rights reserved.</p></footer>
+</div>
+
+<!-- REGISTER PAGE -->
+<div id="pg-register" class="pg">
+  <div class="sec">
+    <form class="reg-form" onsubmit="return false">
+      <h2>Register Now</h2>
+      <div class="fg"><label>Full Name</label><input type="text" placeholder="Enter your full name"/></div>
+      <div class="fg"><label>Email Address</label><input type="email" placeholder="Enter your email"/></div>
+      <div class="fg"><label>Phone Number</label><input type="tel" placeholder="Enter your phone number"/></div>
+      <div class="fg"><label>Select Course</label><select><option>-- Choose a Course --</option><option>Web Development (₹4,999)</option><option>Data Analytics (₹5,499)</option><option>Digital Marketing (₹3,999)</option><option>AI & ML (₹6,999)</option><option>Excel & Power BI (₹2,499)</option><option>Python Programming (₹2,999)</option><option>UI/UX Design (₹4,499)</option><option>Cyber Security (₹7,499)</option><option>Cloud Computing (₹5,999)</option><option>SQL & Database (₹2,499)</option><option>Java Full Stack (₹6,499)</option><option>Tally & Accounting (₹1,999)</option></select></div>
+      <div class="fg"><label>Preferred Batch</label><select><option>-- Choose Batch --</option><option>Morning (9 AM – 11 AM)</option><option>Afternoon (2 PM – 4 PM)</option><option>Evening (6 PM – 8 PM)</option><option>Weekend Batch</option></select></div>
+      <button class="sbtn" onclick="alert('Registration Successful! We will contact you within 24 hours.')">Register Now</button>
+      <p style="font-size:12px;color:var(--muted);text-align:center;margin-top:10px">By registering you agree to our Terms & Conditions</p>
+    </form>
+  </div>
+  <footer><div class="flinks"><a onclick="showPage('home')">Home</a><a onclick="showPage('courses')">Courses</a><a onclick="showPage('register')">Register</a><a onclick="showPage('contact')">Contact</a></div><p>© 2025 V SUCCEED. All rights reserved.</p></footer>
+</div>
+
+<!-- CONTACT PAGE -->
+<div id="pg-contact" class="pg">
+  <div class="sec">
+    <span class="stitle">Contact Us</span>
+    <div class="cgrd2">
+      <div class="cbox"><h3>📍 Address</h3><p>V SUCCEED Training Center</p><p>123, Tech Street, Anna Nagar</p><p>Chennai, Tamil Nadu – 600040</p></div>
+      <div class="cbox"><h3>📞 Phone & Email</h3><p>+91 98765 43210</p><p>+91 87654 32109</p><p>info@vsucceed.com</p></div>
+      <div class="cbox"><h3>🕐 Working Hours</h3><p>Monday – Saturday</p><p>9:00 AM – 8:00 PM</p><p>Sunday: Closed</p></div>
+      <div class="cbox"><h3>🌐 Social Media</h3><p>Facebook: /vsucceed</p><p>Instagram: @vsucceed</p><p>YouTube: V SUCCEED</p></div>
+    </div>
+    <form class="reg-form" onsubmit="return false" style="max-width:100%;max-width:600px;margin:0 auto">
+      <h2>Send a Message</h2>
+      <div class="fg"><label>Name</label><input type="text" placeholder="Your name"/></div>
+      <div class="fg"><label>Email</label><input type="email" placeholder="Your email"/></div>
+      <div class="fg"><label>Message</label><input type="text" placeholder="How can we help you?" style="height:70px"/></div>
+      <button class="sbtn" onclick="alert('Message sent! We will reply within 24 hours.')">Send Message</button>
+    </form>
+  </div>
+  <footer><div class="flinks"><a onclick="showPage('home')">Home</a><a onclick="showPage('courses')">Courses</a><a onclick="showPage('register')">Register</a><a onclick="showPage('contact')">Contact</a></div><p>© 2025 V SUCCEED. All rights reserved.</p></footer>
+</div>
+
+<!-- ADMIN PAGE -->
+<div id="pg-admin" class="pg">
+  <div class="sec">
+    <span class="stitle">Admin Dashboard</span>
+    <div class="astats">
+      <div class="as"><div class="n">47</div><div class="l">New Registrations</div></div>
+      <div class="as"><div class="n">512</div><div class="l">Total Students</div></div>
+      <div class="as"><div class="n">12</div><div class="l">Active Courses</div></div>
+      <div class="as"><div class="n">₹2.4L</div><div class="l">Revenue This Month</div></div>
+    </div>
+    <table class="atbl">
+      <thead><tr><th>#</th><th>Student Name</th><th>Course</th><th>Batch</th><th>Amount</th><th>Status</th></tr></thead>
+      <tbody>
+        <tr><td>001</td><td>Priya Rajan</td><td>Web Development</td><td>Morning</td><td>₹4,999</td><td><span class="bs a">Active</span></td></tr>
+        <tr><td>002</td><td>Karthik S</td><td>Data Analytics</td><td>Evening</td><td>₹5,499</td><td><span class="bs a">Active</span></td></tr>
+        <tr><td>003</td><td>Meena V</td><td>Digital Marketing</td><td>Weekend</td><td>₹3,999</td><td><span class="bs p">Pending</span></td></tr>
+        <tr><td>004</td><td>Arjun M</td><td>Python Programming</td><td>Afternoon</td><td>₹2,999</td><td><span class="bs a">Active</span></td></tr>
+        <tr><td>005</td><td>Divya T</td><td>AI & ML</td><td>Morning</td><td>₹6,999</td><td><span class="bs i">Inactive</span></td></tr>
+        <tr><td>006</td><td>Rahul K</td><td>Excel & Power BI</td><td>Evening</td><td>₹2,499</td><td><span class="bs a">Active</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+  <footer><div class="flinks"><a onclick="showPage('home')">Home</a><a onclick="showPage('courses')">Courses</a><a onclick="showPage('register')">Register</a><a onclick="showPage('contact')">Contact</a></div><p>© 2025 V SUCCEED. All rights reserved.</p></footer>
+</div>
+
+<script>
+const courses = {
+  webdev:{title:"Web Development",sub:"HTML, CSS, JavaScript, React, Node.js — Full Stack",price:"₹4,999",orig:"₹12,000",disc:"58% off",dur:"3 Months",rat:"★★★★★ (248)",badge:"Bestseller",color:"#ff9900",
+    about:"This comprehensive Full Stack Web Development course takes you from absolute beginner to a job-ready developer. You will build real-world projects and learn industry-standard tools used by top companies.",
+    content:["HTML5 – Structure, Semantic Tags, Forms, Tables","CSS3 – Flexbox, Grid, Animations, Responsive Design","JavaScript – ES6+, DOM, Events, Fetch API","React.js – Components, Hooks, State Management","Node.js & Express – REST APIs, Middleware","MongoDB – CRUD, Mongoose, Database Design","Git & GitHub – Version Control, Deployment","Capstone Project – Full Stack E-Commerce App"],
+    uses:["Build complete websites and web applications","Create RESTful APIs for mobile and web apps","Work as a freelancer or full-time developer","Contribute to open-source projects","Develop SaaS products independently"],
+    jobs:["Frontend Developer","Backend Developer","Full Stack Developer","React Developer","Node.js Developer","Web Designer","Freelance Developer"],
+    fresh:"₹3.5L – ₹5L / year",exp:"₹8L – ₹18L / year",freshNote:"0–1 yr experience",expNote:"3–6 yrs experience"},
+  data:{title:"Data Analytics",sub:"Excel, Python, SQL, Power BI, Tableau — Become a Data Pro",price:"₹5,499",orig:"₹14,000",disc:"61% off",dur:"2 Months",rat:"★★★★☆ (183)",badge:"New",color:"#067d62",
+    about:"Learn to collect, clean, analyze and visualize data to make smart business decisions. This course is designed for students and professionals who want to enter the fast-growing field of data analytics.",
+    content:["Advanced Excel – VLOOKUP, Pivot Tables, Macros","SQL – Queries, Joins, Subqueries, Stored Procedures","Python for Data – Pandas, NumPy, Matplotlib","Power BI – Dashboards, DAX, Data Modeling","Tableau – Charts, Filters, Story Telling","Statistics – Descriptive, Inferential, Hypothesis Testing","Real Dataset Projects – Sales, HR, Finance Analysis","Portfolio Building – 3 Capstone Projects"],
+    uses:["Analyze business data to find trends and insights","Create interactive dashboards for management","Automate reports using Python and Excel","Support decision-making with data evidence","Work across industries like finance, healthcare, retail"],
+    jobs:["Data Analyst","Business Analyst","MIS Executive","Power BI Developer","Tableau Developer","Reporting Analyst","Operations Analyst"],
+    fresh:"₹3.5L – ₹5.5L / year",exp:"₹8L – ₹20L / year",freshNote:"0–1 yr experience",expNote:"3–6 yrs experience"},
+  dm:{title:"Digital Marketing",sub:"SEO, Google Ads, Social Media, Email Marketing, Analytics",price:"₹3,999",orig:"₹10,000",disc:"60% off",dur:"2 Months",rat:"★★★★★ (312)",badge:"Trending",color:"#007185",
+    about:"Master the art of digital marketing and learn how to grow brands online. From SEO to paid advertising, this course covers all the tools and strategies used by modern marketing professionals.",
+    content:["SEO – On-page, Off-page, Technical SEO, Keyword Research","Google Ads – Search, Display, Shopping, PPC Campaigns","Social Media Marketing – Facebook, Instagram, LinkedIn","Content Marketing – Blogging, Copywriting, Strategy","Email Marketing – Campaigns, Automation, Drip Sequences","Google Analytics & Search Console – Traffic Analysis","YouTube Marketing – Video SEO, Channel Growth","Meta Ads Manager – Targeting, Retargeting, Budget Optimization"],
+    uses:["Promote businesses and brands online effectively","Run paid ad campaigns with measurable ROI","Grow social media following organically","Generate leads and convert them into customers","Work as a freelancer or in a marketing agency"],
+    jobs:["Digital Marketing Executive","SEO Specialist","Social Media Manager","PPC/Google Ads Expert","Content Marketer","Email Marketing Specialist","Brand Strategist"],
+    fresh:"₹2.5L – ₹4.5L / year",exp:"₹6L – ₹15L / year",freshNote:"0–1 yr experience",expNote:"3–6 yrs experience"},
+  aiml:{title:"AI & Machine Learning",sub:"Python, Scikit-learn, TensorFlow, Deep Learning, Projects",price:"₹6,999",orig:"₹18,000",disc:"61% off",dur:"3 Months",rat:"★★★★☆ (97)",badge:"Hot",color:"#b12704",
+    about:"Dive into the world of Artificial Intelligence and Machine Learning. This course teaches you how to build intelligent systems that can learn from data and make predictions.",
+    content:["Python Refresher – NumPy, Pandas, Matplotlib","Statistics & Probability for ML","Supervised Learning – Linear/Logistic Regression, Decision Trees","Unsupervised Learning – K-Means, PCA, Clustering","Scikit-learn – Model Building, Evaluation, Tuning","Neural Networks – Perceptron, Backpropagation","Deep Learning – CNN, RNN using TensorFlow/Keras","NLP Basics – Sentiment Analysis, Text Classification","End-to-End Projects – House Price, Image Classifier, Chatbot"],
+    uses:["Build predictive models for business problems","Develop recommendation systems like Netflix/Amazon","Create computer vision and NLP applications","Automate intelligent tasks using AI","Work in cutting-edge tech companies and startups"],
+    jobs:["ML Engineer","AI Developer","Data Scientist","NLP Engineer","Computer Vision Engineer","Research Analyst","AI Product Manager"],
+    fresh:"₹5L – ₹8L / year",exp:"₹12L – ₹30L / year",freshNote:"0–1 yr experience",expNote:"3–6 yrs experience"},
+  excel:{title:"Excel & Power BI",sub:"Advanced Excel, Power Query, Power BI Dashboards, DAX",price:"₹2,499",orig:"₹6,000",disc:"58% off",dur:"1 Month",rat:"★★★★★ (201)",badge:"Popular",color:"#067d62",
+    about:"Master Microsoft Excel and Power BI — two of the most in-demand tools in every industry. Learn to automate reports, build dashboards, and analyze data like a professional.",
+    content:["Excel Basics to Advanced – Formulas, Functions, Charts","VLOOKUP, HLOOKUP, INDEX-MATCH, XLOOKUP","Pivot Tables & Pivot Charts – Dynamic Reporting","Macros & VBA – Task Automation","Power Query – Data Cleaning & Transformation","Power BI Desktop – Importing, Modeling Data","DAX Functions – Calculated Columns & Measures","Interactive Dashboards – KPIs, Slicers, Drill-through","Publishing Reports to Power BI Service"],
+    uses:["Create automated monthly/yearly reports","Build executive dashboards for management","Analyze sales, HR, and finance data","Save hours with Excel automation and macros","Work in MIS, Finance, HR, Operations roles"],
+    jobs:["MIS Executive","Data Analyst","Business Analyst","Finance Analyst","HR Analyst","Reporting Specialist","Operations Analyst"],
+    fresh:"₹2.5L – ₹4L / year",exp:"₹6L – ₹14L / year",freshNote:"0–1 yr experience",expNote:"3–6 yrs experience"},
+  python:{title:"Python Programming",sub:"Basics to Advanced, OOP, File Handling, Libraries",price:"₹2,999",orig:"₹7,500",disc:"60% off",dur:"6 Weeks",rat:"★★★★☆ (145)",badge:"New",color:"#007185",
+    about:"Python is the most popular programming language in the world. This course takes you from zero to confident Python programmer with hands-on projects.",
+    content:["Python Basics – Variables, Data Types, Operators","Control Flow – if/else, loops, break, continue","Functions – Parameters, Return, Lambda, Recursion","Object Oriented Programming – Classes, Inheritance","File Handling – Read/Write, CSV, JSON","Modules & Packages – os, sys, datetime, math","Error Handling – try/except, custom exceptions","Libraries – NumPy, Pandas, Matplotlib intro","Mini Projects – Calculator, Quiz App, File Manager"],
+    uses:["Write scripts to automate repetitive tasks","Build web apps using Django or Flask","Use as base for Data Science and AI learning","Work on backend development projects","Scrape and process web data"],
+    jobs:["Python Developer","Backend Developer","Automation Tester","Junior Data Analyst","Software Engineer","Django Developer"],
+    fresh:"₹3L – ₹5L / year",exp:"₹7L – ₹18L / year",freshNote:"0–1 yr experience",expNote:"3–6 yrs experience"},
+  uiux:{title:"UI/UX Design",sub:"Figma, Wireframing, Prototyping, User Research",price:"₹4,499",orig:"₹11,000",disc:"59% off",dur:"2 Months",rat:"★★★★★ (167)",badge:"Trending",color:"#ff9900",
+    about:"Learn how to design beautiful and user-friendly digital products. This course covers the full design process from research to final prototype using industry-standard tools.",
+    content:["Design Principles – Color, Typography, Layout, Hierarchy","User Research – Interviews, Surveys, Personas","Wireframing – Low & High Fidelity Sketches","Figma – Components, Auto Layout, Design Systems","Prototyping – Interactive Flows, Micro-interactions","Usability Testing – A/B Testing, Heatmaps","Responsive Design – Mobile First Approach","Portfolio Project – App Design End-to-End"],
+    uses:["Design apps and websites with great user experience","Create design systems for product teams","Conduct user research and usability studies","Collaborate with developers using design handoff","Freelance as a UI/UX designer"],
+    jobs:["UI Designer","UX Designer","Product Designer","Visual Designer","Interaction Designer","UX Researcher","Design Lead"],
+    fresh:"₹3L – ₹5L / year",exp:"₹8L – ₹20L / year",freshNote:"0–1 yr experience",expNote:"3–6 yrs experience"},
+  cyber:{title:"Cyber Security",sub:"Ethical Hacking, Network Security, Penetration Testing",price:"₹7,499",orig:"₹20,000",disc:"62% off",dur:"3 Months",rat:"★★★★☆ (89)",badge:"Hot",color:"#b12704",
+    about:"Learn how to protect systems, networks, and data from cyber attacks. This course covers ethical hacking, penetration testing, and security best practices used by cybersecurity professionals.",
+    content:["Networking Fundamentals – TCP/IP, DNS, HTTP, Protocols","Linux for Security – Commands, File Permissions, Shell","Ethical Hacking Phases – Recon, Scanning, Exploitation","Kali Linux – Tools – Nmap, Metasploit, Burp Suite","Web Application Security – OWASP Top 10, SQL Injection, XSS","Wireless Security – WPA2, Evil Twin, Deauthentication","Cryptography – Encryption, Hashing, PKI","Incident Response – Detection, Analysis, Recovery","CEH Exam Preparation – Concepts & Practice Tests"],
+    uses:["Protect organizations from cyber attacks and breaches","Perform penetration testing and vulnerability assessments","Work as a security consultant or analyst","Prepare for certifications like CEH, CompTIA Security+","Help companies build secure applications and networks"],
+    jobs:["Cyber Security Analyst","Ethical Hacker","Penetration Tester","Security Engineer","SOC Analyst","Network Security Engineer","Information Security Officer"],
+    fresh:"₹4L – ₹7L / year",exp:"₹10L – ₹25L / year",freshNote:"0–1 yr experience",expNote:"3–6 yrs experience"},
+  cloud:{title:"Cloud Computing",sub:"AWS, Microsoft Azure, Google Cloud Platform",price:"₹5,999",orig:"₹15,000",disc:"60% off",dur:"2 Months",rat:"★★★★☆ (112)",badge:"New",color:"#007185",
+    about:"Cloud computing is the backbone of modern technology. Learn to deploy, manage and scale applications on the world's top cloud platforms — AWS, Azure and GCP.",
+    content:["Cloud Fundamentals – IaaS, PaaS, SaaS, Regions, Zones","AWS Core Services – EC2, S3, RDS, Lambda, VPC","Azure Services – Virtual Machines, Blob Storage, AKS","Google Cloud – GCE, GCS, BigQuery, Cloud Run","Networking in Cloud – Load Balancers, CDN, Firewalls","DevOps Integration – CI/CD, Docker, Kubernetes Basics","Cloud Security – IAM, Policies, Encryption","Cost Management – Billing, Reserved Instances, Savings","AWS Solutions Architect Associate Exam Prep"],
+    uses:["Deploy and manage applications on cloud platforms","Build scalable and highly available infrastructure","Reduce IT costs using cloud services","Implement disaster recovery and backups on cloud","Work as a cloud engineer or DevOps professional"],
+    jobs:["Cloud Engineer","AWS Developer","Azure Administrator","DevOps Engineer","Site Reliability Engineer","Cloud Architect","Solutions Architect"],
+    fresh:"₹4.5L – ₹7L / year",exp:"₹10L – ₹28L / year",freshNote:"0–1 yr experience",expNote:"3–6 yrs experience"},
+  sql:{title:"SQL & Database Management",sub:"MySQL, PostgreSQL, MongoDB, Database Design",price:"₹2,499",orig:"₹6,500",disc:"62% off",dur:"6 Weeks",rat:"★★★★☆ (134)",badge:"Popular",color:"#067d62",
+    about:"SQL is the most essential skill for anyone working with data. Learn to design, query, and manage databases efficiently using MySQL, PostgreSQL and MongoDB.",
+    content:["Database Concepts – RDBMS, Keys, Normalization","DDL, DML, DCL – CREATE, INSERT, UPDATE, DELETE","SELECT Queries – WHERE, ORDER BY, GROUP BY, HAVING","Joins – INNER, LEFT, RIGHT, FULL OUTER","Subqueries – Nested, Correlated, EXISTS","Stored Procedures, Functions, Triggers, Views","Indexing – Performance Optimization, EXPLAIN","PostgreSQL – Advanced Features, JSON Queries","MongoDB – Collections, Documents, Aggregation Pipeline"],
+    uses:["Query and manage databases for any application","Design efficient database schemas for web apps","Work with data in companies as an analyst or developer","Optimize slow database queries for performance","Connect databases to Python, Java, Node.js apps"],
+    jobs:["Database Administrator","SQL Developer","Backend Developer","Data Analyst","ETL Developer","Database Engineer","Reporting Analyst"],
+    fresh:"₹2.5L – ₹4L / year",exp:"₹6L – ₹15L / year",freshNote:"0–1 yr experience",expNote:"3–6 yrs experience"},
+  java:{title:"Java Full Stack Development",sub:"Core Java, Spring Boot, REST API, React, MySQL",price:"₹6,499",orig:"₹16,000",disc:"59% off",dur:"4 Months",rat:"★★★★★ (198)",badge:"Bestseller",color:"#ff9900",
+    about:"Java remains one of the most in-demand programming languages globally. This Full Stack course teaches you to build enterprise-grade applications using Java, Spring Boot and React.",
+    content:["Core Java – OOP, Collections, Exception Handling, Generics","Java 8+ – Lambda, Streams, Optional, Functional Interfaces","Spring Framework – IoC, Dependency Injection, AOP","Spring Boot – Auto Configuration, REST APIs, Actuator","Spring Security – Authentication, JWT, OAuth2","Hibernate & JPA – ORM, CRUD, Relationships","MySQL – Database Design, Queries, Transactions","React.js – Components, Hooks, Axios, Redux","Deployment – Docker, AWS EC2, CI/CD Pipeline"],
+    uses:["Build enterprise-level backend systems","Develop RESTful APIs consumed by web and mobile apps","Work in large IT companies using Java stack","Create full stack applications end-to-end","Prepare for top MNC interviews – TCS, Infosys, Wipro"],
+    jobs:["Java Developer","Spring Boot Developer","Full Stack Java Developer","Backend Engineer","Software Engineer","API Developer","Enterprise Application Developer"],
+    fresh:"₹3.5L – ₹6L / year",exp:"₹9L – ₹22L / year",freshNote:"0–1 yr experience",expNote:"3–6 yrs experience"},
+  tally:{title:"Tally & Accounting",sub:"Tally Prime, GST Filing, Payroll, Accounting Basics",price:"₹1,999",orig:"₹5,000",disc:"60% off",dur:"6 Weeks",rat:"★★★★☆ (156)",badge:"New",color:"#067d62",
+    about:"Tally is the most widely used accounting software in India. This course teaches you accounting fundamentals along with Tally Prime to manage business finances professionally.",
+    content:["Accounting Basics – Debit/Credit, Journal, Ledger, Trial Balance","Tally Prime – Installation, Company Setup, Configuration","Voucher Entry – Payment, Receipt, Sales, Purchase","Inventory Management – Stock Groups, Units, Batches","GST in Tally – GSTR-1, GSTR-3B, E-way Bill","TDS & TCS – Configuration, Deduction, Return Filing","Payroll Processing – Salary Structure, Attendance, PF, ESI","Bank Reconciliation – Auto BRS, Manual BRS","Financial Reports – Balance Sheet, P&L, Cash Flow"],
+    uses:["Manage accounts for small and medium businesses","File GST returns accurately and on time","Process employee payroll with statutory compliance","Maintain inventory and stock records","Work as an accountant, auditor, or finance executive"],
+    jobs:["Tally Operator","Accounts Executive","GST Practitioner","Payroll Executive","Junior Accountant","Finance Assistant","Audit Assistant"],
+    fresh:"₹1.8L – ₹3L / year",exp:"₹4L – ₹8L / year",freshNote:"0–1 yr experience",expNote:"3–6 yrs experience"}
+};
+
+function showPage(name){
+  document.querySelectorAll('.pg').forEach(p=>p.classList.remove('act'));
+  document.querySelectorAll('.nl').forEach(n=>n.classList.remove('act'));
+  const pg=document.getElementById('pg-'+name);
+  const nl=document.getElementById('nl-'+name);
+  if(pg) pg.classList.add('act');
+  if(nl) nl.classList.add('act');
+}
+
+function showCourse(id){
+  const c=courses[id];
+  if(!c) return;
+  document.querySelectorAll('.pg').forEach(p=>p.classList.remove('act'));
+  document.querySelectorAll('.nl').forEach(n=>n.classList.remove('act'));
+  document.getElementById('pg-coursedetail').classList.add('act');
+  document.getElementById('cd-hero').innerHTML=`
+    <div style="max-width:1200px;margin:0 auto">
+      <button class="back-btn" onclick="showPage('courses')">← Back to Courses</button>
+      <span style="background:${c.color};color:${c.color==='#ff9900'?'#131921':'#fff'};font-size:11px;font-weight:700;padding:2px 8px;border-radius:2px;display:inline-block;margin-bottom:10px">${c.badge}</span>
+      <h1>${c.title}</h1>
+      <p>${c.sub}</p>
+      <div class="cd-meta">
+        <span>${c.rat}</span>
+        <span>⏱ Duration: <strong>${c.dur}</strong></span>
+        <span>👨‍🎓 Students: <strong>500+</strong></span>
+        <span>🏆 Certificate Included</span>
+      </div>
+    </div>`;
+  document.getElementById('cd-left').innerHTML=`
+    <div class="cd-box"><h2>About This Course</h2><p style="font-size:14px;line-height:1.7;color:#444">${c.about}</p></div>
+    <div class="cd-box"><h2>Course Content</h2><ul>${c.content.map(i=>`<li>${i}</li>`).join('')}</ul></div>
+    <div class="cd-box"><h2>What You Will Learn & Uses</h2><ul>${c.uses.map(i=>`<li>${i}</li>`).join('')}</ul></div>
+    <div class="cd-box"><h2>Average Salary</h2>
+      <div class="salary-grid">
+        <div class="sal-card"><div class="role">Fresher</div><div class="amt">${c.fresh}</div><div class="exp">${c.freshNote}</div></div>
+        <div class="sal-card"><div class="role">Experienced</div><div class="amt">${c.exp}</div><div class="exp">${c.expNote}</div></div>
+      </div>
+    </div>
+    <div class="cd-box"><h2>Job Roles After This Course</h2><div class="jobs-list">${c.jobs.map(j=>`<span class="job-tag">${j}</span>`).join('')}</div></div>`;
+  document.getElementById('cd-right').innerHTML=`
+    <div class="enroll-box">
+      <div class="big-price">${c.price} <s>${c.orig}</s></div>
+      <div class="disc" style="color:var(--grn)">🎉 ${c.disc} — Limited Time Offer!</div>
+      <button class="full-ebtn" onclick="showPage('register')">Enroll Now</button>
+      <button style="width:100%;background:none;border:1px solid var(--bdr);padding:10px;font-size:14px;cursor:pointer;border-radius:3px">Add to Wishlist</button>
+      <ul>
+        <li>⏱ ${c.dur} Duration</li>
+        <li>Live + Recorded Sessions</li>
+        <li>Industry Expert Trainers</li>
+        <li>Hands-on Projects</li>
+        <li>Job Placement Support</li>
+        <li>Certificate on Completion</li>
+        <li>Lifetime Access to Materials</li>
+        <li>Doubt Clearing Sessions</li>
+      </ul>
+    </div>`;
+  document.getElementById('pg-coursedetail').scrollIntoView({behavior:'smooth'});
+}
+</script>
